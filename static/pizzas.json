@@ -1,0 +1,8 @@
+[{"id":"1","pizzaSize":"S", "pizzaType":"Cheese"} , 
+ {"id":"2","pizzaSize":"M", "pizzaType":"Cheese"} , 
+ {"id":"3","pizzaSize":"L", "pizzaType":"Cheese"} ,
+ {"id":"4","pizzaSize":"XL", "pizzaType":"Cheese"},
+ {"id":"5","pizzaSize":"S", "pizzaType":"Pepperoni"} ,
+ {"id":"6","pizzaSize":"M", "pizzaType":"Pepperoni"} ,
+ {"id":"7","pizzaSize":"L", "pizzaType":"Pepperoni"} ,
+ {"id":"8","pizzaSize":"XL", "pizzaType":"Pepperoni"} ]
