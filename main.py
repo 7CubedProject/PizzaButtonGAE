@@ -22,7 +22,11 @@ from google.appengine.ext.webapp import util
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        self.response.out.write('Hello world!')
+        import mechanize
+        br = mechanize.Browser()
+        br.open("http://www.dominoes.ca")
+
+        self.response.out.write(br.title())
 
 
 def main():
