@@ -7,5 +7,9 @@ handlers:
 - url: /static
   static_dir: static
 
+- url: /pizza*
+  static_files: static/pizzas.json
+  upload: static/pizzas.json
+
 - url: .*
   script: main.py
