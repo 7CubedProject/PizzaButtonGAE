@@ -33,24 +33,52 @@ class MainHandler(webapp.RequestHandler):
         br["email"] = "7cubedproject@gmail.com"
         br["password"] = "velocity"
         br.submit()
+        self.response.out.write(br.response().get_data())
 
         br.select_form(nr=0)
+        br.open(br.click(nr=0))  #delivery
 
-        """
-        first_form = None
-        for form in br.forms():
-            first_form = form
-        first_form["email"] = "gilbert.kf.leung@gmail.com"
-        first_form["password"] = "12345"
-        first_form.submit()
-        """
+        br.select_form(nr=0)
+        br.open(br.click(nr=1))  #re-enter location
 
         self.response.out.write(br.response().get_data())
 
-        #self.response.out.write(br.title())
-        #self.response.out.write(br.get_data())
-        #br.select_form(name="address-entry-form")
-        #self.response.out.write(br.form())
+        br.select_form(nr=0)
+        br["postalcode"] = "N2L 2B5"
+        br.find_control("LOCATIONTYPE").get("House").selected = True
+        br.submit()
+
+        self.response.out.write(br.response().get_data())
+        br.select_form(nr=0)
+        br.submit()
+
+        self.response.out.write(br.response().get_data())
+
+        br.select_form(nr=0)
+        br["streetno"] = "17"
+        br["phoneno"] = "2268682698"
+        br.submit()
+        self.response.out.write(br.response().get_data())
+
+        br.select_form(nr=0)
+        br.open(br.click(nr=0))  # deliver (instead of re-enter)
+        self.response.out.write(br.response().get_data())
+
+        br.select_form(nr=0)
+        br.open(br.click(nr=0))  # order a pizza;
+        self.response.out.write(br.response().get_data())
+
+        br.select_form(nr=0)
+        br.find_control("PIZZASIZE").get("Small").selected = True
+        br.find_control("CODE03").get("On Whole Pizza").selected = True
+        controls = br["action"]
+        self.response.out.write(controls)
+        #self.response.out.write(br.response().get_data())
+
+
+        #br.open(br.click(nr=6))  # proceed to checkout
+        #self.response.out.write(br.response().get_data())
+
 
 
 def main():
