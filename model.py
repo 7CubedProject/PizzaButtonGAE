@@ -37,7 +37,8 @@ class Pizza(db.Model):
   # fill out later
   
  
- #Takes in a user json string and adds a user, address and order to the database
+ # Takes in a user json string and adds a user, address and order to the database
+ # Returns a user key
 def insert_user(user_json):
   user_string = json.loads(user_json)
   address = Address(number = user_string["number"],
@@ -57,9 +58,10 @@ def insert_user(user_json):
               order = key(order))  
 
   user.put()
+  return user.key();
   
 #Returns a =list of avaiable pizza types   
-def pizzaList(self) :
+def pizza_list(self) :
   results = db.GqlQuery("SELECT * from Pizza")
   temp=[]
   for result in results :

@@ -1,10 +1,10 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
-from model import pizzaList
+from model import pizza_list
 
 class PizzaHandler(webapp.RequestHandler):
 	def get(self):
-	  pizzaList(self)
+	  pizza_list(self)
 	  
 def main():
   application = webapp.WSGIApplication([('/pizza',PizzaHandler)], debug=True)

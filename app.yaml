@@ -9,6 +9,9 @@ handlers:
 
 - url: /pizza
   script: pizza.py
+  
+- url: /addUser*
+  script: adduser.py
 
 - url: .*
   script: main.py
