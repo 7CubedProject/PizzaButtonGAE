@@ -5,6 +5,7 @@ from django.utils import simplejson as json
 from google.appengine.api import mail
 from google.appengine.ext import db
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import util
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 
@@ -45,7 +46,7 @@ def insert_user(user_json):
                     province = user_string["province"])
 
   order = Order(qty = user_string["quantity"],
-				size = user_string["pizzaSize"],
+								size = user_string["pizzaSize"],
                 pizza_type = user_string["pizzaId"])   
   address.put()
   order.put()
@@ -56,10 +57,13 @@ def insert_user(user_json):
               order = key(order))  
 
   user.put()
-
+  
 #Returns a =list of avaiable pizza types   
-def pizzaList() :
-  result = db.GqlQuery("SELECT * from Pizza");
-  #pizzas_json = json.dumps(result, separators=(',',':'))
-  print "["
-
+def pizzaList(self) :
+  results = db.GqlQuery("SELECT * from Pizza")
+  temp=[]
+  for result in results :
+     temp.append(result.pizzaType)     
+     
+  pizzas_json = json.dumps(temp, separators=(',',':'))
+  self.response.out.write(pizzas_json)
